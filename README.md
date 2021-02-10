@@ -1,7 +1,5 @@
 # DAOwheel
 
-DAOwheel ICONbet project
-
 @payable
 @external
 def bet(self, MONKEY: int, SLOTH: int, JAGUAR: int, TOUCAN: int, IGUANA: int, FROG: int, TIGER: int, user_seed: str = '') -> None:
@@ -16,3 +14,13 @@ def bonus_spin(self, user_seed: str = '') -> None:
 @external(readonly=True)
 def check_bonus(self, wallet_address: str) -> str:
 - Input wallet address, and in return receive a string of "FROG", "TIGER", or "NONE" for which bonus the player currently has.
+
+@eventlog(indexed=1)
+def SpinResult(self, result: str):
+- Returns the result of the spin for both regular wheel and bonus wheel.
+
+@eventlog(indexed=1)
+def TotalPayoutAmount(self, payout: str):
+- Returns the amount paid out to the player.
+
+
